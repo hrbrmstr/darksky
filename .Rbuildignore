@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^\.travis\.yml$
+^.*md$
+\.bower\.json
+\.bowerrc
+README_files
+^cran-comments\.md$

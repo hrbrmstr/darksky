@@ -1,0 +1,77 @@
+---
+output: rmarkdown::github_document
+---
+[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) 
+
+`darksky` : Tools to Work with the Dark Sky API
+
+- Dark Sky API Docs: https://darksky.net/dev/docs
+- Dark Sky Dev site: https://darksky.net/dev/
+
+The following functions are implemented:
+
+- `darksky_api_key` :	Get or set `DARKSKY_API_KEY` value
+- `get_current_forecast` : Retrieve the current forecast (for the next week)
+- `get_forecast_for` : Retrieve weather data for a specific place/time
+- `plot.darksky` : Plot method for `darksky` objects
+- `print.darksky` : A tad more human readable default printing
+
+### Installation
+
+```{r eval=FALSE}
+devtools::install_github("hrbrmstr/darksky")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+options(width=120)
+```
+
+### Usage
+
+```{r}
+library(darksky)
+library(purrr)
+
+# current verison
+packageVersion("darksky")
+
+now <- get_current_forecast(43.2672, -70.8617)
+print(now)
+
+then <- get_forecast_for(43.2672, -70.8617, "2013-05-06T12:00:00-0400", add_headers=TRUE)
+print(then)
+
+# getting data for more than one location
+
+more_than_one <- data.frame(loc=c("Maine", "Seattle"),
+                            lon=c(43.2672, 47.6097),
+                            lat=c(70.8617, 122.3331),
+                            when=c("2013-05-06T12:00:00-0400",
+                                   "2013-05-06T12:00:00-0400"),
+                            stringsAsFactors=FALSE)
+
+bigger_list <- pmap(list(more_than_one$lon, more_than_one$lat,
+                         more_than_one$when),
+                    get_forecast_for)
+names(bigger_list) <- more_than_one$loc
+
+bigger_list$Seattle
+
+bigger_list$Maine
+
+print(sprintf("You have used %s API calls.", then$`x-forecast-api-calls`))
+
+plot(now)
+```
+
+### Test Results
+
+```{r}
+library(darksky)
+library(testthat)
+
+date()
+
+test_dir("tests/")
+```
+
