@@ -8,7 +8,7 @@ Authors@R: c(
       person("Lasse", "Vilhelmsen", role=c("ctb"))
     )
 Maintainer: Bob Rudis <bob@rud.is>
-Description: Provides rogrammatic access to the Dark Sky API 
+Description: Provides programmatic access to the Dark Sky API 
     <https://darksky.net/dev/docs>, which provides current or historical global 
     weather conditions.
 URL: https://github.com/hrbrmstr/darksky

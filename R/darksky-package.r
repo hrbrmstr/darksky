@@ -3,7 +3,7 @@
 #' Programmatic access to the Dark Sky API <https://darksky.net/dev/docs>,
 #' which provides current or historical global weather conditions.
 #'
-#' @name Rforecastio
+#' @name darksky
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
 #' @import dplyr
