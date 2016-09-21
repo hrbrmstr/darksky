@@ -4,14 +4,14 @@ Title: Tools to Work with the Dark Sky API
 Version: 1.0.0
 Date: 2016-09-21
 Authors@R: c(
-      person("Bob", "Rudis", email = "bob@rudis.net", role = c("aut", "cre")),
+      person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
       person("Lasse", "Vilhelmsen", role=c("ctb"))
     )
 Maintainer: Bob Rudis <bob@rud.is>
 Description: Provides rogrammatic access to the Dark Sky API 
-    <https://darksky.net/dev/docs>, which provides current or 
-    historical global weather conditions.
-URL: http://github.com/hrbrmstr/darksky
+    <https://darksky.net/dev/docs>, which provides current or historical global 
+    weather conditions.
+URL: https://github.com/hrbrmstr/darksky
 Suggests:
     testthat
 Imports:
@@ -22,7 +22,7 @@ Imports:
     gridExtra,
     ggplot2
 Depends:
-    R (>= 3.0.0)
+    R (>= 3.1.0)
 License: MIT + file LICENSE
 BugReports: https://github.com/hrbrmstr/darksky/issues
 RoxygenNote: 5.0.1

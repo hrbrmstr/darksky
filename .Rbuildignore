@@ -1,7 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
-^.*md$
+^.*Rmd$
 \.bower\.json
 \.bowerrc
 README_files
