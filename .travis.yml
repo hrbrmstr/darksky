@@ -1,12 +1,8 @@
-language: r
-warnings_are_errors: true
-sudo: required
+language: R
+sudo: false
+cache: packages
 
-env:
- global:
-   - CRAN: http://cran.rstudio.com
-
-notifications:
-  email:
-    on_success: change
-    on_failure: change
+r:
+ - oldrel
+ - release
+ - devel
