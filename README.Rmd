@@ -1,7 +1,8 @@
 ---
 output: rmarkdown::github_document
 ---
-[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) 
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
+[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
 
 `darksky` : Tools to Work with the Dark Sky API
 
@@ -20,6 +21,12 @@ The following functions are implemented:
 
 ```{r eval=FALSE}
 devtools::install_github("hrbrmstr/darksky")
+```
+
+OR
+
+```{r eval=FALSE}
+devtools::install.packages("darksky")
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}

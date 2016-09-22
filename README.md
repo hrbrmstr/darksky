@@ -1,5 +1,5 @@
 
-[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky)
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) [![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
 
 `darksky` : Tools to Work with the Dark Sky API
 
@@ -18,6 +18,12 @@ The following functions are implemented:
 
 ``` r
 devtools::install_github("hrbrmstr/darksky")
+```
+
+OR
+
+``` r
+devtools::install.packages("darksky")
 ```
 
 ### Usage
@@ -41,7 +47,7 @@ print(now)
     ## ======================================================================================================================== 
     ## Observations: 61
     ## Variables: 3
-    ## $ time              <dttm> 2016-09-21 09:42:00, 2016-09-21 09:43:00, 2016-09-21 09:44:00, 2016-09-21 09:45:00, 2016...
+    ## $ time              <dttm> 2016-09-22 08:05:00, 2016-09-22 08:06:00, 2016-09-22 08:07:00, 2016-09-22 08:08:00, 2016...
     ## $ precipIntensity   <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
     ## $ precipProbability <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
     ## 
@@ -49,76 +55,76 @@ print(now)
     ## ======================================================================================================================== 
     ## Observations: 49
     ## Variables: 16
-    ## $ time                <dttm> 2016-09-21 09:00:00, 2016-09-21 10:00:00, 2016-09-21 11:00:00, 2016-09-21 12:00:00, 20...
+    ## $ time                <dttm> 2016-09-22 08:00:00, 2016-09-22 09:00:00, 2016-09-22 10:00:00, 2016-09-22 11:00:00, 20...
     ## $ summary             <chr> "Clear", "Clear", "Clear", "Clear", "Clear", "Clear", "Clear", "Clear", "Clear", "Clear...
     ## $ icon                <chr> "clear-day", "clear-day", "clear-day", "clear-day", "clear-day", "clear-day", "clear-da...
-    ## $ precipIntensity     <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-    ## $ precipProbability   <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, ...
-    ## $ temperature         <dbl> 67.95, 70.92, 74.12, 77.05, 79.42, 81.18, 82.97, 82.24, 80.00, 76.24, 71.42, 67.80, 65....
-    ## $ apparentTemperature <dbl> 67.95, 70.92, 74.12, 77.05, 79.42, 80.86, 82.11, 81.43, 79.86, 76.24, 71.42, 67.80, 65....
-    ## $ dewPoint            <dbl> 58.24, 58.80, 57.98, 56.86, 55.81, 55.05, 55.05, 54.07, 52.83, 51.97, 51.69, 51.24, 50....
-    ## $ humidity            <dbl> 0.71, 0.66, 0.57, 0.50, 0.44, 0.41, 0.38, 0.38, 0.39, 0.43, 0.50, 0.55, 0.59, 0.62, 0.6...
-    ## $ windSpeed           <dbl> 7.88, 6.81, 6.33, 5.52, 5.29, 5.36, 5.46, 5.62, 5.39, 4.33, 3.49, 3.38, 3.79, 4.18, 4.4...
-    ## $ windBearing         <int> 308, 306, 303, 299, 289, 279, 268, 265, 266, 263, 259, 256, 259, 263, 269, 275, 279, 28...
-    ## $ visibility          <dbl> 9.90, 9.96, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00...
-    ## $ cloudCover          <dbl> 0.09, 0.15, 0.20, 0.22, 0.18, 0.11, 0.07, 0.07, 0.06, 0.04, 0.04, 0.05, 0.11, 0.17, 0.2...
-    ## $ pressure            <dbl> 1020.18, 1020.32, 1020.35, 1020.21, 1019.96, 1019.74, 1019.55, 1019.40, 1019.40, 1019.6...
-    ## $ ozone               <dbl> 268.89, 268.71, 268.54, 268.48, 268.42, 268.21, 267.76, 267.15, 266.60, 266.18, 265.81,...
+    ## $ precipIntensity     <dbl> 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000,...
+    ## $ precipProbability   <dbl> 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.0...
+    ## $ temperature         <dbl> 59.08, 66.40, 72.16, 76.59, 79.29, 82.24, 83.17, 82.69, 81.25, 78.63, 74.51, 70.07, 67....
+    ## $ apparentTemperature <dbl> 59.08, 66.40, 72.16, 76.59, 79.29, 82.69, 83.43, 82.93, 81.69, 78.63, 74.51, 70.07, 67....
+    ## $ dewPoint            <dbl> 54.60, 56.65, 58.09, 58.76, 58.92, 60.40, 60.32, 59.93, 59.43, 58.59, 57.45, 56.62, 56....
+    ## $ humidity            <dbl> 0.85, 0.71, 0.61, 0.54, 0.50, 0.48, 0.46, 0.46, 0.48, 0.50, 0.55, 0.62, 0.68, 0.71, 0.7...
+    ## $ windSpeed           <dbl> 4.09, 3.59, 2.02, 0.20, 1.65, 3.16, 5.09, 5.68, 6.41, 6.72, 5.78, 5.51, 5.20, 5.32, 5.5...
+    ## $ windBearing         <int> 306, 313, 318, 149, 158, 161, 161, 156, 151, 148, 144, 141, 145, 154, 165, 172, 179, 18...
+    ## $ visibility          <dbl> 9.64, 9.51, 9.93, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 9.90, 9.88, 9...
+    ## $ cloudCover          <dbl> 0.02, 0.05, 0.10, 0.13, 0.11, 0.09, 0.06, 0.05, 0.06, 0.06, 0.07, 0.14, 0.14, 0.22, 0.2...
+    ## $ pressure            <dbl> 1021.67, 1021.66, 1021.50, 1021.27, 1020.97, 1020.58, 1020.18, 1019.73, 1019.25, 1018.8...
+    ## $ ozone               <dbl> 258.88, 258.37, 257.73, 257.33, 257.33, 257.57, 257.95, 258.55, 259.28, 259.75, 259.76,...
     ## $ precipType          <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
     ## 
     ## daily 
     ## ======================================================================================================================== 
     ## Observations: 8
     ## Variables: 27
-    ## $ time                       <dttm> 2016-09-21, 2016-09-22, 2016-09-23, 2016-09-24, 2016-09-25, 2016-09-26, 2016-09...
-    ## $ summary                    <chr> "Clear throughout the day.", "Partly cloudy overnight.", "Light rain starting in...
-    ## $ icon                       <chr> "clear-day", "partly-cloudy-night", "rain", "clear-day", "clear-day", "partly-cl...
-    ## $ sunriseTime                <dttm> 2016-09-21 06:31:22, 2016-09-22 06:32:28, 2016-09-23 06:33:34, 2016-09-24 06:34...
-    ## $ sunsetTime                 <dttm> 2016-09-21 18:43:59, 2016-09-22 18:42:09, 2016-09-23 18:40:19, 2016-09-24 18:38...
-    ## $ moonPhase                  <dbl> 0.68, 0.72, 0.75, 0.79, 0.83, 0.86, 0.90, 0.93
-    ## $ precipIntensity            <dbl> 0.0000, 0.0000, 0.0027, 0.0000, 0.0000, 0.0000, 0.0143, 0.0138
-    ## $ precipIntensityMax         <dbl> 0.0000, 0.0000, 0.0147, 0.0000, 0.0000, 0.0000, 0.0371, 0.0388
-    ## $ precipProbability          <dbl> 0.00, 0.00, 0.45, 0.00, 0.00, 0.00, 0.54, 0.55
-    ## $ temperatureMin             <dbl> 60.34, 56.74, 54.80, 42.92, 38.56, 37.33, 40.13, 53.14
-    ## $ temperatureMinTime         <dttm> 2016-09-21 07:00:00, 2016-09-22 06:00:00, 2016-09-23 23:00:00, 2016-09-24 23:00...
-    ## $ temperatureMax             <dbl> 82.97, 77.68, 76.68, 64.18, 58.58, 63.20, 55.01, 56.65
-    ## $ temperatureMaxTime         <dttm> 2016-09-21 15:00:00, 2016-09-22 14:00:00, 2016-09-23 12:00:00, 2016-09-24 14:00...
-    ## $ apparentTemperatureMin     <dbl> 60.34, 56.74, 54.80, 40.24, 34.30, 33.78, 40.13, 53.14
-    ## $ apparentTemperatureMinTime <dttm> 2016-09-21 07:00:00, 2016-09-22 06:00:00, 2016-09-23 23:00:00, 2016-09-24 23:00...
-    ## $ apparentTemperatureMax     <dbl> 82.11, 77.68, 76.68, 64.18, 58.58, 63.20, 55.01, 56.65
-    ## $ apparentTemperatureMaxTime <dttm> 2016-09-21 15:00:00, 2016-09-22 14:00:00, 2016-09-23 12:00:00, 2016-09-24 14:00...
-    ## $ dewPoint                   <dbl> 55.99, 54.08, 54.32, 38.89, 33.29, 36.45, 44.02, 51.41
-    ## $ humidity                   <dbl> 0.66, 0.66, 0.66, 0.61, 0.62, 0.66, 0.87, 0.89
-    ## $ windSpeed                  <dbl> 4.50, 1.44, 4.07, 6.83, 7.01, 2.88, 4.35, 8.62
-    ## $ windBearing                <int> 279, 166, 247, 308, 312, 277, 7, 59
-    ## $ visibility                 <dbl> 9.87, 10.00, 10.00, 10.00, NA, NA, NA, NA
-    ## $ cloudCover                 <dbl> 0.11, 0.07, 0.49, 0.06, 0.00, 0.05, 0.92, 1.00
-    ## $ pressure                   <dbl> 1019.58, 1020.49, 1015.55, 1018.06, 1019.44, 1019.53, 1019.43, 1024.68
-    ## $ ozone                      <dbl> 267.11, 259.91, 267.42, 306.79, 314.66, 298.59, 289.30, 291.89
-    ## $ precipIntensityMaxTime     <dttm> NA, NA, 2016-09-23 20:00:00, NA, NA, NA, 2016-09-27 23:00:00, 2016-09-28 01:00:00
-    ## $ precipType                 <chr> NA, NA, "rain", NA, NA, NA, "rain", "rain"
+    ## $ time                       <dttm> 2016-09-22, 2016-09-23, 2016-09-24, 2016-09-25, 2016-09-26, 2016-09-27, 2016-09...
+    ## $ summary                    <chr> "Partly cloudy overnight.", "Light rain starting in the afternoon.", "Clear thro...
+    ## $ icon                       <chr> "partly-cloudy-night", "rain", "clear-day", "clear-day", "clear-day", "partly-cl...
+    ## $ sunriseTime                <dttm> 2016-09-22 06:32:28, 2016-09-23 06:33:34, 2016-09-24 06:34:41, 2016-09-25 06:35...
+    ## $ sunsetTime                 <dttm> 2016-09-22 18:42:09, 2016-09-23 18:40:19, 2016-09-24 18:38:30, 2016-09-25 18:36...
+    ## $ moonPhase                  <dbl> 0.72, 0.75, 0.79, 0.83, 0.86, 0.90, 0.93, 0.96
+    ## $ precipIntensity            <dbl> 0.0000, 0.0080, 0.0002, 0.0000, 0.0001, 0.0017, 0.0000, 0.0139
+    ## $ precipIntensityMax         <dbl> 0.0000, 0.0340, 0.0010, 0.0000, 0.0008, 0.0032, 0.0000, 0.0630
+    ## $ precipProbability          <dbl> 0.00, 0.53, 0.01, 0.00, 0.01, 0.09, 0.00, 0.59
+    ## $ temperatureMin             <dbl> 55.91, 55.34, 46.02, 39.99, 36.92, 38.47, 50.28, 55.32
+    ## $ temperatureMinTime         <dttm> 2016-09-22 06:00:00, 2016-09-23 23:00:00, 2016-09-24 23:00:00, 2016-09-25 23:00...
+    ## $ temperatureMax             <dbl> 83.17, 77.22, 63.42, 62.42, 63.42, 69.20, 76.35, 73.34
+    ## $ temperatureMaxTime         <dttm> 2016-09-22 14:00:00, 2016-09-23 14:00:00, 2016-09-24 15:00:00, 2016-09-25 16:00...
+    ## $ apparentTemperatureMin     <dbl> 55.91, 55.34, 42.50, 37.01, 33.53, 38.47, 50.28, 55.32
+    ## $ apparentTemperatureMinTime <dttm> 2016-09-22 06:00:00, 2016-09-23 23:00:00, 2016-09-24 23:00:00, 2016-09-25 05:00...
+    ## $ apparentTemperatureMax     <dbl> 83.43, 77.22, 63.42, 62.42, 63.42, 69.20, 76.35, 73.34
+    ## $ apparentTemperatureMaxTime <dttm> 2016-09-22 14:00:00, 2016-09-23 14:00:00, 2016-09-24 15:00:00, 2016-09-25 16:00...
+    ## $ dewPoint                   <dbl> 55.86, 54.06, 38.65, 33.81, 35.12, 40.49, 51.67, 55.62
+    ## $ humidity                   <dbl> 0.68, 0.67, 0.58, 0.57, 0.64, 0.65, 0.71, 0.82
+    ## $ windSpeed                  <dbl> 1.57, 3.58, 7.15, 7.05, 3.25, 2.66, 5.78, 7.87
+    ## $ windBearing                <int> 184, 275, 303, 294, 313, 264, 253, 254
+    ## $ visibility                 <dbl> 9.86, 10.00, 10.00, 10.00, NA, NA, NA, NA
+    ## $ cloudCover                 <dbl> 0.12, 0.56, 0.10, 0.00, 0.00, 0.08, 0.23, 0.39
+    ## $ pressure                   <dbl> 1020.19, 1015.34, 1018.58, 1019.51, 1024.33, 1024.79, 1024.29, 1021.13
+    ## $ ozone                      <dbl> 259.04, 267.09, 303.34, 311.21, 307.08, 288.10, 283.10, 294.29
+    ## $ precipIntensityMaxTime     <dttm> NA, 2016-09-23 17:00:00, 2016-09-24 02:00:00, NA, 2016-09-26 23:00:00, 2016-09-...
+    ## $ precipType                 <chr> NA, "rain", "rain", NA, "rain", "rain", NA, "rain"
     ## 
     ## currently 
     ## ======================================================================================================================== 
     ## Observations: 1
     ## Variables: 17
-    ## $ time                 <dttm> 2016-09-21 09:42:30
+    ## $ time                 <dttm> 2016-09-22 08:05:51
     ## $ summary              <chr> "Clear"
     ## $ icon                 <chr> "clear-day"
-    ## $ nearestStormDistance <int> 109
-    ## $ nearestStormBearing  <int> 204
+    ## $ nearestStormDistance <int> 117
+    ## $ nearestStormBearing  <int> 187
     ## $ precipIntensity      <int> 0
     ## $ precipProbability    <int> 0
-    ## $ temperature          <dbl> 70.06
-    ## $ apparentTemperature  <dbl> 70.06
-    ## $ dewPoint             <dbl> 58.66
-    ## $ humidity             <dbl> 0.67
-    ## $ windSpeed            <dbl> 7.12
+    ## $ temperature          <dbl> 59.8
+    ## $ apparentTemperature  <dbl> 59.8
+    ## $ dewPoint             <dbl> 54.85
+    ## $ humidity             <dbl> 0.84
+    ## $ windSpeed            <dbl> 4.04
     ## $ windBearing          <int> 307
-    ## $ visibility           <dbl> 9.94
-    ## $ cloudCover           <dbl> 0.13
-    ## $ pressure             <dbl> 1020.28
-    ## $ ozone                <dbl> 268.76
+    ## $ visibility           <dbl> 9.63
+    ## $ cloudCover           <dbl> 0.02
+    ## $ pressure             <dbl> 1021.67
+    ## $ ozone                <dbl> 258.83
 
 ``` r
 then <- get_forecast_for(43.2672, -70.8617, "2013-05-06T12:00:00-0400", add_headers=TRUE)
@@ -349,7 +355,7 @@ print(sprintf("You have used %s API calls.", then$`x-forecast-api-calls`))
 plot(now)
 ```
 
-![](README_files/figure-markdown_github/unnamed-chunk-3-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-4-1.png)
 
 ### Test Results
 
@@ -369,7 +375,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Sep 21 09:42:33 2016"
+    ## [1] "Thu Sep 22 08:05:53 2016"
 
 ``` r
 test_dir("tests/")
