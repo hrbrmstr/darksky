@@ -6,3 +6,12 @@ r:
  - oldrel
  - release
  - devel
+
+notifications:
+  email:
+    - bob@rud.is
+  irc:
+    channels:
+      - "irc.irccloud.com#builds"
+    nick: travisci
+    password: Mangrove
