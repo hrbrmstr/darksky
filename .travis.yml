@@ -12,6 +12,5 @@ notifications:
     - bob@rud.is
   irc:
     channels:
-      - "irc.irccloud.com#builds"
+      - "104.236.112.222#builds"
     nick: travisci
-    password: Mangrove
