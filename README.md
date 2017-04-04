@@ -202,13 +202,13 @@ print(then)
 # getting data for more than one location
 
 more_than_one <- data.frame(loc=c("Maine", "Seattle"),
-                            lon=c(43.2672, 47.6097),
-                            lat=c(70.8617, 122.3331),
+                            lat=c(43.2672, 47.6097),
+                            lon=c(70.8617, 122.3331),
                             when=c("2013-05-06T12:00:00-0400",
                                    "2013-05-06T12:00:00-0400"),
                             stringsAsFactors=FALSE)
 
-bigger_list <- pmap(list(more_than_one$lon, more_than_one$lat,
+bigger_list <- pmap(list(more_than_one$lat, more_than_one$lon,
                          more_than_one$when),
                     get_forecast_for)
 names(bigger_list) <- more_than_one$loc
