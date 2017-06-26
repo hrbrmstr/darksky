@@ -9,9 +9,9 @@
 \arguments{
 \item{x}{a darksky x}
 
-\item{readings}{specify which readings to plot. will plot all available by default}
-
 \item{\dots}{ignored}
+
+\item{readings}{specify which readings to plot. will plot all available by default}
 }
 \value{
 frame grob
@@ -23,4 +23,3 @@ Uses ggplot2 & grid.arrange to produce graphs for darksky objects
 only forecast/readings components of \code{x} that have more than one observation
   will be plotted
 }
-

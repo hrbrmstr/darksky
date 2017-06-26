@@ -68,4 +68,3 @@ information.
 tmp <- get_current_forecast(37.8267, -122.423)
 }
 }
-

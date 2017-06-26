@@ -1,14 +1,15 @@
 Package: darksky
 Type: Package
-Title: Tools to Work with the Dark Sky API
-Version: 1.0.0
-Date: 2016-09-21
+Title: Tools to Work with the 'Dark Sky' 'API'
+Version: 1.1.0
+Date: 2017-06-26
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
-      person("Lasse", "Vilhelmsen", role=c("ctb"))
+      person("Lasse", "Vilhelmsen", role = "ctb"),
+      person("David", "Severski", email = "davidski@deadheaven.com", role = "ctb")
     )
 Maintainer: Bob Rudis <bob@rud.is>
-Description: Provides programmatic access to the Dark Sky API 
+Description: Provides programmatic access to the 'Dark Sky' 'API' 
     <https://darksky.net/dev/docs>, which provides current or historical global 
     weather conditions.
 URL: https://github.com/hrbrmstr/darksky
@@ -23,7 +24,7 @@ Imports:
     gtable,
     ggplot2
 Depends:
-    R (>= 3.1.0)
+    R (>= 3.2.0)
 License: MIT + file LICENSE
 BugReports: https://github.com/hrbrmstr/darksky/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

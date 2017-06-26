@@ -14,4 +14,3 @@
 \description{
 Slightly more human-readable output for darksky objects
 }
-

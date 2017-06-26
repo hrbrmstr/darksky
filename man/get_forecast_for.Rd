@@ -71,4 +71,3 @@ information.
 tmp <- get_forecast_for(37.8267,-122.423, "2013-05-06T12:00:00-0400")
 }
 }
-

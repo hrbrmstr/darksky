@@ -18,4 +18,3 @@ key residing in the environment variable \code{DARKSKY_API_KEY}. The
 easiest way to accomplish this is to set it in the `\code{.Renviron}` file in your
 home directory.
 }
-

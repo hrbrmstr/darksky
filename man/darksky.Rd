@@ -12,4 +12,3 @@ which provides current or historical global weather conditions.
 \author{
 Bob Rudis (bob@rud.is)
 }
-

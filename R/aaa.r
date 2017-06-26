@@ -1,6 +1,7 @@
 # stops check complaints
-temperature <- humidity <- precipIntensity <- temperatureMinTime <-
-  temperatureMin <- temperatureMaxTime <- temperatureMax <- NULL
+utils::globalVariables(c("temperature", "humidity", "precipIntensity",
+                         "temperatureMinTime", "temperatureMin", "temperatureMaxTime",
+                         "temperatureMax"))
 
 # helper function to convert timestamps
 # not really needed but it makes the mutate_each_ call a bit cleaner this way
