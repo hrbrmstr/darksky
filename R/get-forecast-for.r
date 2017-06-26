@@ -83,8 +83,8 @@ get_forecast_for <- function(latitude, longitude, timestamp,
 
     # convert times to POSIXct since they make sense in tbl_dfs/data.frames
 
-    ly <- dplyr::mutate_each_(dat, funs(convert_time),
-                              vars=ftimes[which(ftimes %in% colnames(dat))])
+    ly <- dplyr::mutate_at(dat, .funs= funs(convert_time),
+                              .vars=ftimes[which(ftimes %in% colnames(dat))])
 
   }) -> fio_data
 
