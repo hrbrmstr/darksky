@@ -1,8 +1,8 @@
 Package: darksky
 Type: Package
 Title: Tools to Work with the 'Dark Sky' 'API'
-Version: 1.1.0
-Date: 2017-06-26
+Version: 1.2.0
+Date: 2017-06-29
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
       person("Lasse", "Vilhelmsen", role = "ctb"),

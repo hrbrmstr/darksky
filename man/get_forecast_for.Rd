@@ -19,7 +19,8 @@ Jan 1970) or a string formatted as follows: \code{[YYYY]-[MM]-[DD]T[HH]:[MM]:[SS
 \code{[+|-][HH][MM]} for an offset in hours or minutes). For the latter format, if no
 timezone is present, local time (at the provided latitude and longitude) is assumed.
 (This string format is a subset of ISO 8601 time. An as example,
-\code{2013-05-06T12:00:00-0400}.)}
+\code{2013-05-06T12:00:00-0400}.) If an R \code{Date} or \code{POSIXct} object is passed in
+it will be converted into the proper format.}
 
 \item{units}{return the API response in units other than the default Imperial unit}
 
@@ -42,9 +43,9 @@ or proxies)}
 }
 \value{
 an \code{darksky} object that contains the original JSON response object (optionally), a
-  list of  named `tbl_df` `data.frame` objects corresponding to what was returned by
-  the API and (optionally) relevant response headers (\code{cache-control}, \code{expires},
-  \code{x-forecast-api-calls}, \code{x-response-time}).
+list of  named \code{tbl_df} \code{data.frame} objects corresponding to what was returned by
+the API and (optionally) relevant response headers (\code{cache-control}, \code{expires},
+\code{x-forecast-api-calls}, \code{x-response-time}).
 }
 \description{
 Query for a specific time, past or future (for many places, 60 years in the past to 10
@@ -64,7 +65,8 @@ default.
 
 See the Options section of the official
 \href{https://darksky.net/dev/docs}{Dark Sky API documentation} for more
-information.
+information
+.
 }
 \examples{
 \dontrun{

@@ -16,8 +16,9 @@
 #'
 #' See the Options section of the official
 #' \href{https://darksky.net/dev/docs}{Dark Sky API documentation} for more
-#' information.
-#'
+#' information
+#' .
+#' @md
 #' @param latitude forecast latitude (character, decimal format)
 #' @param longitude forecast longitude (character, decimal format)
 #' @param timestamp should either be a UNIX time (that is, seconds since midnight GMT on 1
@@ -26,7 +27,8 @@
 #'   \code{[+|-][HH][MM]} for an offset in hours or minutes). For the latter format, if no
 #'   timezone is present, local time (at the provided latitude and longitude) is assumed.
 #'   (This string format is a subset of ISO 8601 time. An as example,
-#'   \code{2013-05-06T12:00:00-0400}.)
+#'   \code{2013-05-06T12:00:00-0400}.) If an R `Date` or `POSIXct` object is passed in
+#'   it will be converted into the proper format.
 #' @param units return the API response in units other than the default Imperial unit
 #' @param language return text summaries in the desired language
 #' @param exclude exclude some number of data blocks from the API response. This is useful
@@ -52,6 +54,10 @@ get_forecast_for <- function(latitude, longitude, timestamp,
                              units="us", language="en", exclude=NULL,
                              add_json=FALSE, add_headers=FALSE,
                              ...) {
+
+  if (inherits(timestamp, "Date") || inherits(timestamp, "POSIXct")) {
+    timestamp <- ts_to_iso8601(timestamp)
+  }
 
   url <- sprintf("https://api.darksky.net/forecast/%s/%s,%s,%s",
                  darksky_api_key(), latitude, longitude, timestamp)
