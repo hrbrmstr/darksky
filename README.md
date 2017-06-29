@@ -30,13 +30,14 @@ devtools::install.packages("darksky")
 
 ``` r
 library(darksky)
+library(ggplot2)
 library(purrr)
 
 # current verison
 packageVersion("darksky")
 ```
 
-    ## [1] '1.1.0'
+    ## [1] '1.2.0'
 
 ``` r
 now <- get_current_forecast(43.2672, -70.8617)
@@ -46,92 +47,107 @@ print(now)
     ## minutely 
     ## ======================================================================================================================== 
     ## Observations: 61
-    ## Variables: 3
-    ## $ time              <dttm> 2017-06-26 12:08:00, 2017-06-26 12:09:00, 2017-06-26 12:10:00, 2017-06-26 12:11:00, 2017...
-    ## $ precipIntensity   <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
-    ## $ precipProbability <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,...
+    ## Variables: 5
+    ## $ time                 <dttm> 2017-06-29 12:17:00, 2017-06-29 12:18:00, 2017-06-29 12:19:00, 2017-06-29 12:20:00, 2...
+    ## $ precipIntensity      <dbl> 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0....
+    ## $ precipProbability    <dbl> 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0....
+    ## $ precipIntensityError <dbl> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...
+    ## $ precipType           <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA...
     ## 
     ## hourly 
     ## ======================================================================================================================== 
     ## Observations: 49
     ## Variables: 18
-    ## $ time                <dttm> 2017-06-26 12:00:00, 2017-06-26 13:00:00, 2017-06-26 14:00:00, 2017-06-26 15:00:00, 20...
-    ## $ summary             <chr> "Clear", "Clear", "Clear", "Clear", "Clear", "Clear", "Partly Cloudy", "Partly Cloudy",...
-    ## $ icon                <chr> "clear-day", "clear-day", "clear-day", "clear-day", "clear-day", "clear-day", "partly-c...
-    ## $ precipIntensity     <dbl> 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0000, 0.0021, 0.0023, 0.0041, 0.0040, 0.0000,...
-    ## $ precipProbability   <dbl> 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.01, 0.01, 0.03, 0.02, 0.00, 0.00, 0.00, 0.00, 0.0...
-    ## $ temperature         <dbl> 71.99, 73.60, 74.73, 75.34, 74.83, 73.83, 72.35, 69.88, 67.86, 65.76, 63.91, 62.32, 61....
-    ## $ apparentTemperature <dbl> 69.20, 70.99, 72.16, 72.90, 72.31, 72.19, 70.97, 69.47, 67.57, 65.49, 63.04, 61.58, 60....
-    ## $ dewPoint            <dbl> 51.71, 51.91, 52.24, 52.48, 52.94, 53.78, 54.25, 54.83, 54.79, 54.11, 52.93, 52.28, 52....
-    ## $ humidity            <dbl> 0.49, 0.47, 0.45, 0.45, 0.46, 0.50, 0.53, 0.59, 0.63, 0.66, 0.67, 0.70, 0.72, 0.76, 0.7...
-    ## $ windSpeed           <dbl> 8.08, 7.93, 8.05, 7.93, 8.19, 6.74, 6.31, 4.46, 4.06, 3.61, 4.21, 3.62, 3.06, 2.96, 3.8...
-    ## $ windGust            <dbl> 16.88, 17.34, 16.71, 15.61, 14.62, 11.02, 11.97, 8.71, 7.65, 6.80, 6.70, 5.80, 4.61, 4....
-    ## $ windBearing         <int> 298, 238, 262, 271, 237, 243, 248, 275, 239, 252, 273, 268, 227, 205, 256, 247, 255, 25...
-    ## $ visibility          <dbl> 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 9.95, 10.00, 10.00, 10.0...
-    ## $ cloudCover          <dbl> 0.01, 0.05, 0.03, 0.09, 0.17, 0.22, 0.26, 0.28, 0.32, 0.28, 0.21, 0.17, 0.15, 0.15, 0.1...
-    ## $ pressure            <dbl> 1014.07, 1013.63, 1013.35, 1013.18, 1013.10, 1013.21, 1013.22, 1013.26, 1013.51, 1013.8...
-    ## $ ozone               <dbl> 343.41, 340.55, 337.97, 335.72, 333.66, 332.55, 332.72, 333.84, 335.41, 337.21, 339.56,...
-    ## $ uvIndex             <int> 9, 9, 8, 6, 3, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 5, 6, 6, 6, 4, 2, ...
-    ## $ precipType          <chr> NA, NA, NA, NA, NA, NA, "rain", "rain", "rain", "rain", NA, NA, NA, NA, NA, NA, NA, NA,...
+    ## $ time                <dttm> 2017-06-29 12:00:00, 2017-06-29 13:00:00, 2017-06-29 14:00:00, 2017-06-29 15:00:00, 20...
+    ## $ summary             <chr> "Overcast", "Mostly Cloudy", "Mostly Cloudy", "Mostly Cloudy", "Mostly Cloudy", "Overca...
+    ## $ icon                <chr> "cloudy", "partly-cloudy-day", "partly-cloudy-day", "partly-cloudy-day", "partly-cloudy...
+    ## $ precipIntensity     <dbl> 0.0000, 0.0034, 0.0000, 0.0000, 0.0000, 0.0000, 0.0020, 0.0015, 0.0019, 0.0000, 0.0032,...
+    ## $ precipProbability   <dbl> 0.00, 0.01, 0.00, 0.00, 0.00, 0.00, 0.01, 0.01, 0.01, 0.00, 0.04, 0.09, 0.29, 0.40, 0.3...
+    ## $ temperature         <dbl> 74.99, 76.74, 77.10, 76.15, 75.13, 73.89, 71.57, 69.38, 67.40, 66.52, 66.16, 66.03, 66....
+    ## $ apparentTemperature <dbl> 74.99, 76.74, 77.10, 76.15, 75.13, 73.89, 71.57, 69.38, 67.40, 66.52, 66.16, 66.03, 66....
+    ## $ dewPoint            <dbl> 58.37, 56.51, 54.40, 54.90, 55.77, 56.54, 57.01, 56.45, 56.42, 57.15, 57.93, 58.75, 59....
+    ## $ humidity            <dbl> 0.56, 0.50, 0.45, 0.48, 0.51, 0.55, 0.60, 0.64, 0.68, 0.72, 0.75, 0.77, 0.80, 0.82, 0.8...
+    ## $ windSpeed           <dbl> 6.99, 8.66, 10.74, 9.06, 6.58, 4.48, 4.89, 5.58, 5.19, 5.09, 5.98, 6.73, 7.59, 8.27, 9....
+    ## $ windGust            <dbl> 13.82, 18.46, 21.58, 19.19, 11.67, 7.93, 6.76, 6.99, 7.67, 10.15, 14.14, 19.52, 22.24, ...
+    ## $ windBearing         <int> 236, 243, 246, 226, 195, 46, 109, 109, 138, 160, 184, 191, 199, 203, 210, 212, 212, 214...
+    ## $ visibility          <dbl> 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10.00, 10....
+    ## $ cloudCover          <dbl> 0.95, 0.91, 0.88, 0.83, 0.92, 0.99, 0.99, 0.99, 0.99, 0.97, 1.00, 0.98, 0.99, 0.87, 0.9...
+    ## $ pressure            <dbl> 1017.90, 1017.65, 1017.46, 1017.20, 1016.90, 1016.54, 1016.28, 1016.12, 1015.85, 1015.6...
+    ## $ ozone               <dbl> 335.92, 333.80, 331.74, 329.84, 328.15, 326.67, 325.09, 323.87, 323.98, 326.18, 329.73,...
+    ## $ uvIndex             <int> 5, 5, 5, 4, 2, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 5, 6, 6, 5, 4, 2, ...
+    ## $ precipType          <chr> NA, "rain", NA, NA, NA, NA, "rain", "rain", "rain", NA, "rain", "rain", "rain", "rain",...
     ## 
     ## daily 
     ## ======================================================================================================================== 
     ## Observations: 8
-    ## Variables: 30
-    ## $ time                       <dttm> 2017-06-26, 2017-06-27, 2017-06-28, 2017-06-29, 2017-06-30, 2017-07-01, 2017-07...
-    ## $ summary                    <chr> "Partly cloudy in the evening.", "Light rain starting in the afternoon, continui...
-    ## $ icon                       <chr> "partly-cloudy-day", "rain", "partly-cloudy-day", "rain", "rain", "rain", "rain"...
-    ## $ sunriseTime                <dttm> 2017-06-26 05:06:11, 2017-06-27 05:06:34, 2017-06-28 05:06:59, 2017-06-29 05:07...
-    ## $ sunsetTime                 <dttm> 2017-06-26 20:28:55, 2017-06-27 20:28:55, 2017-06-28 20:28:52, 2017-06-29 20:28...
-    ## $ moonPhase                  <dbl> 0.10, 0.13, 0.17, 0.20, 0.24, 0.27, 0.30, 0.33
-    ## $ precipIntensity            <dbl> 0.0010, 0.0068, 0.0003, 0.0048, 0.0085, 0.0114, 0.0079, 0.0000
-    ## $ precipIntensityMax         <dbl> 0.0041, 0.0297, 0.0015, 0.0331, 0.0404, 0.0525, 0.0265, 0.0000
-    ## $ precipIntensityMaxTime     <dttm> 2017-06-26 20:00:00, 2017-06-27 14:00:00, 2017-06-28 00:00:00, 2017-06-29 23:00...
-    ## $ precipProbability          <dbl> 0.09, 0.54, 0.02, 0.38, 0.60, 0.44, 0.50, 0.00
-    ## $ precipType                 <chr> "rain", "rain", "rain", "rain", "rain", "rain", "rain", NA
-    ## $ temperatureMin             <dbl> 58.21, 55.97, 54.96, 58.55, 65.02, 66.42, 65.00, 63.05
-    ## $ temperatureMinTime         <dttm> 2017-06-26 04:00:00, 2017-06-27 05:00:00, 2017-06-28 05:00:00, 2017-06-29 04:00...
-    ## $ temperatureMax             <dbl> 75.34, 74.38, 75.30, 77.81, 83.23, 77.02, 76.92, 80.06
-    ## $ temperatureMaxTime         <dttm> 2017-06-26 15:00:00, 2017-06-27 13:00:00, 2017-06-28 16:00:00, 2017-06-29 14:00...
-    ## $ apparentTemperatureMin     <dbl> 56.42, 54.75, 52.62, 56.05, 63.17, 67.86, 65.80, 61.32
-    ## $ apparentTemperatureMinTime <dttm> 2017-06-26 04:00:00, 2017-06-27 04:00:00, 2017-06-28 05:00:00, 2017-06-29 04:00...
-    ## $ apparentTemperatureMax     <dbl> 72.90, 72.36, 72.97, 75.47, 85.58, 77.90, 80.81, 80.74
-    ## $ apparentTemperatureMaxTime <dttm> 2017-06-26 15:00:00, 2017-06-27 13:00:00, 2017-06-28 16:00:00, 2017-06-29 14:00...
-    ## $ dewPoint                   <dbl> 52.64, 56.03, 52.71, 55.92, 67.49, 65.27, 64.99, 60.06
-    ## $ humidity                   <dbl> 0.61, 0.72, 0.66, 0.66, 0.81, 0.82, 0.81, 0.67
-    ## $ windSpeed                  <dbl> 5.73, 5.02, 5.31, 6.72, 8.37, 4.47, 0.80, 6.43
-    ## $ windGust                   <dbl> 14.02, 10.02, 11.31, 17.32, 25.27, 12.49, 10.67, 17.14
-    ## $ windBearing                <int> 265, 218, 280, 206, 229, 157, 216, 280
+    ## Variables: 31
+    ## $ time                       <dttm> 2017-06-29, 2017-06-30, 2017-07-01, 2017-07-02, 2017-07-03, 2017-07-04, 2017-07...
+    ## $ summary                    <chr> "Light rain overnight.", "Light rain starting in the afternoon.", "Light rain in...
+    ## $ icon                       <chr> "rain", "rain", "rain", "rain", "clear-day", "clear-day", "clear-day", "rain"
+    ## $ sunriseTime                <dttm> 2017-06-29 05:07:26, 2017-06-30 05:07:55, 2017-07-01 05:08:26, 2017-07-02 05:08...
+    ## $ sunsetTime                 <dttm> 2017-06-29 20:28:48, 2017-06-30 20:28:41, 2017-07-01 20:28:33, 2017-07-02 20:28...
+    ## $ moonPhase                  <dbl> 0.20, 0.24, 0.27, 0.30, 0.33, 0.36, 0.39, 0.42
+    ## $ precipIntensity            <dbl> 0.0013, 0.0127, 0.0062, 0.0279, 0.0008, 0.0000, 0.0003, 0.0012
+    ## $ precipIntensityMax         <dbl> 0.0048, 0.0415, 0.0179, 0.0906, 0.0057, 0.0000, 0.0021, 0.0101
+    ## $ precipIntensityMaxTime     <dttm> 2017-06-29 23:00:00, 2017-06-30 17:00:00, 2017-07-01 17:00:00, 2017-07-02 05:00...
+    ## $ precipProbability          <dbl> 0.14, 0.74, 0.55, 0.81, 0.05, 0.00, 0.01, 0.09
+    ## $ precipType                 <chr> "rain", "rain", "rain", "rain", "rain", NA, "rain", "rain"
+    ## $ temperatureMin             <dbl> 53.52, 66.02, 70.80, 68.71, 64.06, 61.34, 60.75, 60.49
+    ## $ temperatureMinTime         <dttm> 2017-06-29 04:00:00, 2017-06-30 02:00:00, 2017-07-01 05:00:00, 2017-07-02 05:00...
+    ## $ temperatureMax             <dbl> 77.10, 84.76, 85.81, 82.98, 82.20, 78.48, 78.98, 82.15
+    ## $ temperatureMaxTime         <dttm> 2017-06-29 14:00:00, 2017-06-30 14:00:00, 2017-07-01 14:00:00, 2017-07-02 16:00...
+    ## $ apparentTemperatureMin     <dbl> 53.52, 66.10, 71.32, 69.44, 64.06, 61.34, 60.75, 60.49
+    ## $ apparentTemperatureMinTime <dttm> 2017-06-29 04:00:00, 2017-06-30 00:00:00, 2017-07-01 05:00:00, 2017-07-02 23:00...
+    ## $ apparentTemperatureMax     <dbl> 77.10, 88.58, 91.28, 85.38, 83.59, 78.48, 78.98, 82.59
+    ## $ apparentTemperatureMaxTime <dttm> 2017-06-29 14:00:00, 2017-06-30 14:00:00, 2017-07-01 15:00:00, 2017-07-02 16:00...
+    ## $ dewPoint                   <dbl> 54.72, 66.09, 68.06, 67.34, 60.37, 55.54, 54.73, 58.60
+    ## $ humidity                   <dbl> 0.69, 0.74, 0.74, 0.80, 0.65, 0.62, 0.60, 0.64
+    ## $ windSpeed                  <dbl> 3.73, 8.78, 10.34, 4.97, 5.38, 2.58, 2.20, 7.08
+    ## $ windGust                   <dbl> 21.58, 32.71, 27.12, 23.43, 16.97, 12.52, 22.56, 26.57
+    ## $ windGustTime               <int> 1498759200, 1498806000, 1498888800, 1498968000, 1499104800, 1499158800, 14992992...
+    ## $ windBearing                <int> 218, 222, 209, 232, 274, 330, 164, 203
     ## $ visibility                 <int> 10, 10, 10, NA, NA, NA, NA, NA
-    ## $ cloudCover                 <dbl> 0.12, 0.43, 0.38, 0.82, 0.72, 0.73, 0.97, 0.45
-    ## $ pressure                   <dbl> 1013.45, 1013.64, 1014.86, 1015.43, 1012.29, 1013.55, 1012.19, 1013.89
-    ## $ ozone                      <dbl> 338.43, 353.98, 379.92, 336.95, 327.90, 304.87, 304.66, 324.44
-    ## $ uvIndex                    <int> 9, 6, 8, 6, 8, 6, 6, 7
-    ## $ uvIndexTime                <int> 1498496400, 1498586400, 1498669200, 1498755600, 1498842000, 1498928400, 14990148...
+    ## $ cloudCover                 <dbl> 0.80, 0.84, 0.63, 0.58, 0.05, 0.04, 0.02, 0.12
+    ## $ pressure                   <dbl> 1017.47, 1012.78, 1011.26, 1008.21, 1012.02, 1016.10, 1020.80, 1020.68
+    ## $ ozone                      <dbl> 338.57, 326.84, 299.51, 308.32, 329.14, 338.51, 339.08, 320.99
+    ## $ uvIndex                    <int> 5, 6, 8, 7, 9, 9, 9, 10
+    ## $ uvIndexTime                <int> 1498752000, 1498838400, 1498928400, 1499011200, 1499097600, 1499184000, 14992704...
     ## 
     ## currently 
     ## ======================================================================================================================== 
     ## Observations: 1
     ## Variables: 19
-    ## $ time                 <dttm> 2017-06-26 12:08:43
-    ## $ summary              <chr> "Clear"
-    ## $ icon                 <chr> "clear-day"
-    ## $ nearestStormDistance <int> 109
-    ## $ nearestStormBearing  <int> 273
+    ## $ time                 <dttm> 2017-06-29 12:17:13
+    ## $ summary              <chr> "Overcast"
+    ## $ icon                 <chr> "cloudy"
+    ## $ nearestStormDistance <int> 9
+    ## $ nearestStormBearing  <int> 325
     ## $ precipIntensity      <int> 0
     ## $ precipProbability    <int> 0
-    ## $ temperature          <dbl> 71.99
-    ## $ apparentTemperature  <dbl> 69.45
-    ## $ dewPoint             <dbl> 51.53
-    ## $ humidity             <dbl> 0.49
-    ## $ windSpeed            <dbl> 7.56
-    ## $ windGust             <dbl> 16.95
-    ## $ windBearing          <int> 290
+    ## $ temperature          <dbl> 74.99
+    ## $ apparentTemperature  <dbl> 74.99
+    ## $ dewPoint             <dbl> 57.41
+    ## $ humidity             <dbl> 0.54
+    ## $ windSpeed            <dbl> 7.45
+    ## $ windGust             <dbl> 15.15
+    ## $ windBearing          <int> 238
     ## $ visibility           <int> 10
-    ## $ cloudCover           <dbl> 0.02
-    ## $ pressure             <dbl> 1014.01
-    ## $ ozone                <int> 343
-    ## $ uvIndex              <int> 9
+    ## $ cloudCover           <dbl> 0.94
+    ## $ pressure             <dbl> 1017.83
+    ## $ ozone                <dbl> 335.31
+    ## $ uvIndex              <int> 5
+
+Historical (using `Date` objects):
+
+``` r
+seq(Sys.Date()-10, Sys.Date(), "1 day") %>% 
+  map(~get_forecast_for(43.2672, -70.8617, .x)) %>% 
+  map_df("hourly") %>% 
+  ggplot(aes(x=time, y=temperature)) +
+  geom_line()
+```
+
+![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-5-1.png)
 
 ``` r
 then <- get_forecast_for(43.2672, -70.8617, "2013-05-06T12:00:00-0400", add_headers=TRUE)
@@ -148,11 +164,11 @@ print(then)
     ## $ precipIntensity     <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ## $ precipProbability   <int> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
     ## $ temperature         <dbl> 40.32, 38.78, 37.63, 36.15, 34.39, 34.30, 34.66, 40.15, 44.32, 48.06, 51.39, 54.85, 58....
-    ## $ apparentTemperature <dbl> 36.70, 35.53, 34.27, 33.24, 30.73, 30.32, 31.19, 37.27, 40.80, 44.38, 47.85, 51.47, 54....
+    ## $ apparentTemperature <dbl> 38.41, 38.78, 37.63, 36.15, 34.39, 34.30, 34.66, 40.15, 42.18, 45.76, 51.39, 54.85, 58....
     ## $ dewPoint            <dbl> 36.46, 35.62, 35.23, 34.17, 32.67, 32.92, 33.14, 37.95, 40.08, 42.35, 43.49, 42.36, 41....
     ## $ humidity            <dbl> 0.86, 0.88, 0.91, 0.92, 0.93, 0.95, 0.94, 0.92, 0.85, 0.81, 0.74, 0.63, 0.55, 0.53, 0.5...
     ## $ windSpeed           <dbl> 3.28, 2.31, 2.36, 1.19, 2.20, 2.86, 1.95, 2.16, 4.16, 5.30, 5.56, 5.23, 5.58, 7.81, 8.0...
-    ## $ windBearing         <int> 163, 174, 167, 110, 75, 113, 59, 127, 163, 188, 188, 182, 213, 229, 232, 212, 216, 226,...
+    ## $ windBearing         <int> 197, 186, 193, 250, 285, 247, 301, 233, 197, 172, 172, 178, 147, 131, 128, 148, 144, 13...
     ## $ visibility          <dbl> 9.36, 8.18, 8.49, 7.98, 6.89, 6.71, 6.08, 7.56, 7.89, 9.28, 9.47, 9.47, 9.47, 9.47, 9.4...
     ## $ cloudCover          <dbl> 0.00, 0.00, 0.00, 0.00, 0.00, 0.02, 0.03, 0.20, 0.23, 0.02, 0.05, 0.04, 0.04, 0.04, 0.0...
     ## $ pressure            <dbl> 1024.89, 1024.71, 1024.49, 1024.23, 1023.94, 1024.06, 1024.33, 1024.87, 1025.07, 1025.3...
@@ -175,14 +191,14 @@ print(then)
     ## $ temperatureMinTime         <dttm> 2013-05-06 05:00:00
     ## $ temperatureMax             <dbl> 60.29
     ## $ temperatureMaxTime         <dttm> 2013-05-06 14:00:00
-    ## $ apparentTemperatureMin     <dbl> 30.32
+    ## $ apparentTemperatureMin     <dbl> 34.3
     ## $ apparentTemperatureMinTime <dttm> 2013-05-06 05:00:00
-    ## $ apparentTemperatureMax     <dbl> 55.56
+    ## $ apparentTemperatureMax     <dbl> 60.29
     ## $ apparentTemperatureMaxTime <dttm> 2013-05-06 14:00:00
     ## $ dewPoint                   <dbl> 40.2
     ## $ humidity                   <dbl> 0.78
     ## $ windSpeed                  <dbl> 4.01
-    ## $ windBearing                <int> 199
+    ## $ windBearing                <int> 161
     ## $ visibility                 <dbl> 7.8
     ## $ cloudCover                 <dbl> 0.05
     ## $ pressure                   <dbl> 1023.47
@@ -199,11 +215,11 @@ print(then)
     ## $ precipIntensity     <int> 0
     ## $ precipProbability   <int> 0
     ## $ temperature         <dbl> 58.15
-    ## $ apparentTemperature <dbl> 54.66
+    ## $ apparentTemperature <dbl> 58.15
     ## $ dewPoint            <dbl> 41.86
     ## $ humidity            <dbl> 0.55
     ## $ windSpeed           <dbl> 5.58
-    ## $ windBearing         <int> 213
+    ## $ windBearing         <int> 147
     ## $ visibility          <dbl> 9.47
     ## $ cloudCover          <dbl> 0.04
     ## $ pressure            <dbl> 1024.31
@@ -236,11 +252,11 @@ bigger_list$Seattle
     ## $ icon                <chr> "partly-cloudy-night", "partly-cloudy-night", "partly-cloudy-night", "partly-cloudy-nig...
     ## $ precipType          <chr> "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain",...
     ## $ temperature         <dbl> 57.35, 55.78, 54.52, 53.33, 52.43, 52.86, 55.25, 58.97, 63.02, 67.49, 72.29, 76.25, 78....
-    ## $ apparentTemperature <dbl> 54.18, 52.36, 50.90, 49.76, 48.98, 49.33, 51.24, 54.22, 57.74, 62.09, 66.94, 70.95, 73....
+    ## $ apparentTemperature <dbl> 57.35, 55.78, 54.52, 53.33, 52.43, 52.86, 55.25, 58.97, 63.02, 67.49, 72.29, 76.25, 78....
     ## $ dewPoint            <dbl> 36.96, 37.89, 38.45, 38.50, 38.36, 38.38, 38.42, 38.10, 37.66, 37.57, 37.32, 36.72, 36....
     ## $ humidity            <dbl> 0.46, 0.51, 0.54, 0.57, 0.59, 0.58, 0.53, 0.46, 0.39, 0.33, 0.28, 0.24, 0.22, 0.21, 0.2...
     ## $ windSpeed           <dbl> 3.84, 4.39, 4.78, 4.61, 4.28, 4.45, 5.59, 7.20, 8.45, 8.99, 9.21, 9.30, 9.37, 9.46, 9.3...
-    ## $ windBearing         <int> 178, 184, 186, 184, 179, 174, 172, 171, 170, 167, 163, 162, 168, 176, 180, 176, 166, 15...
+    ## $ windBearing         <int> 182, 176, 174, 176, 181, 186, 188, 189, 190, 193, 197, 198, 192, 184, 180, 184, 194, 20...
     ## $ visibility          <dbl> 9.65, 9.42, 9.25, 9.21, 9.23, 9.25, 9.24, 9.23, 9.25, 9.30, 9.37, 9.43, 9.45, 9.45, 9.4...
     ## $ cloudCover          <dbl> 0.62, 0.41, 0.29, 0.40, 0.61, 0.75, 0.73, 0.63, 0.56, 0.58, 0.62, 0.66, 0.70, 0.73, 0.7...
     ## $ pressure            <dbl> 1013.52, 1013.49, 1013.39, 1013.14, 1012.82, 1012.56, 1012.55, 1012.60, 1012.37, 1011.6...
@@ -261,19 +277,19 @@ bigger_list$Seattle
     ## $ temperatureMinTime         <dttm> 2013-05-06 16:00:00
     ## $ temperatureMax             <dbl> 84.52
     ## $ temperatureMaxTime         <dttm> 2013-05-07 04:00:00
-    ## $ apparentTemperatureMin     <dbl> 48.98
+    ## $ apparentTemperatureMin     <dbl> 52.43
     ## $ apparentTemperatureMinTime <dttm> 2013-05-06 16:00:00
-    ## $ apparentTemperatureMax     <dbl> 80.6
-    ## $ apparentTemperatureMaxTime <dttm> 2013-05-07 05:00:00
+    ## $ apparentTemperatureMax     <dbl> 84.52
+    ## $ apparentTemperatureMaxTime <dttm> 2013-05-07 04:00:00
     ## $ dewPoint                   <dbl> 37.33
     ## $ humidity                   <dbl> 0.35
     ## $ windSpeed                  <dbl> 6.5
-    ## $ windBearing                <int> 168
+    ## $ windBearing                <int> 192
     ## $ visibility                 <dbl> 9.36
     ## $ cloudCover                 <dbl> 0.62
     ## $ pressure                   <dbl> 1008.89
     ## $ uvIndex                    <int> 5
-    ## $ uvIndexTime                <int> 1367902800
+    ## $ uvIndexTime                <int> 1367895600
     ## 
     ## currently 
     ## ======================================================================================================================== 
@@ -284,11 +300,11 @@ bigger_list$Seattle
     ## $ icon                <chr> "partly-cloudy-night"
     ## $ precipType          <chr> "rain"
     ## $ temperature         <dbl> 57.35
-    ## $ apparentTemperature <dbl> 54.18
+    ## $ apparentTemperature <dbl> 57.35
     ## $ dewPoint            <dbl> 36.96
     ## $ humidity            <dbl> 0.46
     ## $ windSpeed           <dbl> 3.84
-    ## $ windBearing         <int> 178
+    ## $ windBearing         <int> 182
     ## $ visibility          <dbl> 9.65
     ## $ cloudCover          <dbl> 0.62
     ## $ pressure            <dbl> 1013.52
@@ -307,11 +323,11 @@ bigger_list$Maine
     ## $ icon                <chr> "clear-night", "clear-night", "clear-night", "clear-night", "clear-night", "clear-night...
     ## $ precipType          <chr> "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain", "rain",...
     ## $ temperature         <dbl> 53.54, 52.38, 51.25, 49.29, 50.96, 50.25, 49.37, 55.50, 61.63, 60.60, 67.21, 72.04, 69....
-    ## $ apparentTemperature <dbl> 49.72, 49.22, 43.43, 46.90, 48.58, 47.11, 46.86, 52.70, 54.32, 58.41, 62.31, 65.33, 64....
+    ## $ apparentTemperature <dbl> 53.54, 52.38, 51.25, 49.29, 50.96, 50.25, 49.37, 55.50, 61.63, 60.60, 67.21, 72.04, 69....
     ## $ dewPoint            <dbl> 36.71, 36.48, 40.43, 37.64, 38.04, 38.24, 36.74, 41.43, 41.26, 39.05, 41.98, 33.27, 39....
     ## $ humidity            <dbl> 0.53, 0.55, 0.66, 0.64, 0.61, 0.63, 0.62, 0.59, 0.47, 0.45, 0.40, 0.24, 0.33, 0.21, 0.2...
     ## $ windSpeed           <dbl> 4.72, 3.32, 13.00, 1.86, 2.05, 3.49, 1.91, 3.97, 13.00, 2.65, 9.00, 11.02, 8.93, 15.61,...
-    ## $ windBearing         <int> 311, 312, 290, 264, 259, 226, 227, 183, 300, 309, 280, 315, 312, 304, 308, 307, 306, 30...
+    ## $ windBearing         <int> 49, 48, 70, 96, 101, 134, 133, 177, 60, 51, 80, 45, 48, 56, 52, 53, 54, 55, 65, 63, 62,...
     ## $ visibility          <dbl> 7.62, 6.20, 6.20, 7.62, 6.20, 6.20, 9.15, 6.20, 6.20, 9.15, 6.20, 6.20, 8.80, 6.20, 6.2...
     ## $ cloudCover          <dbl> 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.15, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.0...
     ## $ pressure            <dbl> 1020.43, NA, NA, 1020.20, NA, NA, 1019.94, NA, NA, 1018.77, NA, NA, 1017.31, NA, NA, 10...
@@ -332,19 +348,19 @@ bigger_list$Maine
     ## $ temperatureMinTime         <dttm> 2013-05-05 17:00:00
     ## $ temperatureMax             <dbl> 75.33
     ## $ temperatureMaxTime         <dttm> 2013-05-06 06:00:00
-    ## $ apparentTemperatureMin     <dbl> 43.43
-    ## $ apparentTemperatureMinTime <dttm> 2013-05-05 16:00:00
-    ## $ apparentTemperatureMax     <dbl> 66.44
-    ## $ apparentTemperatureMaxTime <dttm> 2013-05-06 05:00:00
+    ## $ apparentTemperatureMin     <dbl> 49.29
+    ## $ apparentTemperatureMinTime <dttm> 2013-05-05 17:00:00
+    ## $ apparentTemperatureMax     <dbl> 75.33
+    ## $ apparentTemperatureMaxTime <dttm> 2013-05-06 06:00:00
     ## $ dewPoint                   <dbl> 37.58
     ## $ humidity                   <dbl> 0.42
     ## $ windSpeed                  <dbl> 8.31
-    ## $ windBearing                <int> 298
+    ## $ windBearing                <int> 62
     ## $ visibility                 <dbl> 7.02
     ## $ cloudCover                 <dbl> 0.02
     ## $ pressure                   <dbl> 1017.78
     ## $ uvIndex                    <int> 9
-    ## $ uvIndexTime                <int> 1367827200
+    ## $ uvIndexTime                <int> 1367823600
     ## 
     ## currently 
     ## ======================================================================================================================== 
@@ -355,11 +371,11 @@ bigger_list$Maine
     ## $ icon                <chr> "clear-night"
     ## $ precipType          <chr> "rain"
     ## $ temperature         <dbl> 67.17
-    ## $ apparentTemperature <dbl> 60.15
+    ## $ apparentTemperature <dbl> 67.17
     ## $ dewPoint            <dbl> 33.18
     ## $ humidity            <dbl> 0.28
     ## $ windSpeed           <dbl> 11.22
-    ## $ windBearing         <int> 288
+    ## $ windBearing         <int> 72
     ## $ visibility          <dbl> 6.2
     ## $ cloudCover          <int> 0
     ## $ uvIndex             <int> 0
@@ -368,13 +384,13 @@ bigger_list$Maine
 print(sprintf("You have used %s API calls.", then$`x-forecast-api-calls`))
 ```
 
-    ## [1] "You have used 10 API calls."
+    ## [1] "You have used 72 API calls."
 
 ``` r
 plot(now)
 ```
 
-![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-4-1.png)
+![](README_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
 
 ### Test Results
 
@@ -394,7 +410,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Mon Jun 26 12:08:47 2017"
+    ## [1] "Thu Jun 29 12:17:18 2017"
 
 ``` r
 test_dir("tests/")
