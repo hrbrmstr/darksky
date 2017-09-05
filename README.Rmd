@@ -1,5 +1,7 @@
 ---
 output: rmarkdown::github_document
+editor_options: 
+  chunk_output_type: console
 ---
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
 [![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
@@ -37,6 +39,7 @@ options(width=120)
 
 ```{r}
 library(darksky)
+library(ggplot2)
 library(purrr)
 
 # current verison
@@ -44,20 +47,32 @@ packageVersion("darksky")
 
 now <- get_current_forecast(43.2672, -70.8617)
 print(now)
+```
 
+Historical (using `Date` objects):
+
+```{r}
+seq(Sys.Date()-10, Sys.Date(), "1 day") %>% 
+  map(~get_forecast_for(43.2672, -70.8617, .x)) %>% 
+  map_df("hourly") %>% 
+  ggplot(aes(x=time, y=temperature)) +
+  geom_line()
+```
+
+```{r}
 then <- get_forecast_for(43.2672, -70.8617, "2013-05-06T12:00:00-0400", add_headers=TRUE)
 print(then)
 
 # getting data for more than one location
 
 more_than_one <- data.frame(loc=c("Maine", "Seattle"),
-                            lon=c(43.2672, 47.6097),
-                            lat=c(70.8617, 122.3331),
+                            lat=c(43.2672, 47.6097),
+                            lon=c(70.8617, 122.3331),
                             when=c("2013-05-06T12:00:00-0400",
                                    "2013-05-06T12:00:00-0400"),
                             stringsAsFactors=FALSE)
 
-bigger_list <- pmap(list(more_than_one$lon, more_than_one$lat,
+bigger_list <- pmap(list(more_than_one$lat, more_than_one$lon,
                          more_than_one$when),
                     get_forecast_for)
 names(bigger_list) <- more_than_one$loc
