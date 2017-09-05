@@ -68,22 +68,33 @@ get_current_forecast <- function(latitude, longitude,
   # hourly, minutely and daily blocks might not be in the response
   # so only process the ones that are actually in the response
 
-  lapply(lys[which(lys %in% names(tmp))], function(x) {
+  lapply(
 
-    dat <- dplyr::bind_rows(lapply(tmp[[x]]$data, as_data_frame))
+    lys[which(lys %in% names(tmp))],
 
-    # various time fields might not be in the block data, so only
-    # process which ones are in the block data
+    function(x) {
 
-    ftimes <- c("time", "sunriseTime", "sunsetTime", "temperatureMinTime",
-                "temperatureMaxTime", "apparentTemperatureMinTime",
-                "apparentTemperatureMaxTime", "precipIntensityMaxTime")
+      dat <- plyr::rbind.fill(lapply(tmp[[x]]$data, as.data.frame, stringsAsFactors=FALSE))
 
-    # convert times to POSIXct since they make sense in tbl_dfs/data.frames
+      # various time fields might not be in the block data, so only
+      # process which ones are in the block data
 
-    ly <- dplyr::mutate_at(dat, .funs=funs(convert_time), .vars=ftimes[which(ftimes %in% colnames(dat))])
+      ftimes <- c("time", "sunriseTime", "sunsetTime", "temperatureMinTime",
+                  "temperatureMaxTime", "apparentTemperatureMinTime",
+                  "apparentTemperatureMaxTime", "precipIntensityMaxTime")
 
-  }) -> fio_data
+      # convert times to POSIXct since they make sense in tbl_dfs/data.frames
+
+      cols <- ftimes[which(ftimes %in% colnames(dat))]
+      for (col in cols) {
+        dat[,col] <- convert_time(dat[,col])
+      }
+
+      dat
+
+    }
+
+  ) -> fio_data
 
   fio_data <- setNames(fio_data, lys[which(lys %in% names(tmp))])
 
@@ -91,9 +102,9 @@ get_current_forecast <- function(latitude, longitude,
   # rbinding later for folks
 
   if ("currently" %in% names(tmp)) {
-    currently <- dplyr::as_data_frame(tmp$currently)
+    currently <- as.data.frame(tmp$currently, stringsAsFactors=FALSE)
     if ("time" %in% colnames(currently)) {
-      currently <- dplyr::mutate(currently, time=convert_time(time))
+      currently$time <- convert_time(currently$time)
     }
     fio_data$currently <- currently
   }
@@ -110,6 +121,7 @@ get_current_forecast <- function(latitude, longitude,
   }
 
   class(ret_val) <- c("darksky", "current", class(ret_val))
+
   return(ret_val)
 
 }

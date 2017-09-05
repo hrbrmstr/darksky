@@ -6,7 +6,8 @@
 #' @name darksky
 #' @docType package
 #' @author Bob Rudis (bob@@rud.is)
-#' @import dplyr
+# @import dplyr
+#' @importFrom plyr rbind.fill
 #' @importFrom httr GET content stop_for_status headers
 #' @importFrom grid unit
 #' @importFrom gridExtra grid.arrange

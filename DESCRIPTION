@@ -1,8 +1,8 @@
 Package: darksky
 Type: Package
 Title: Tools to Work with the 'Dark Sky' 'API'
-Version: 1.1.0
-Date: 2017-06-26
+Version: 1.2.0
+Date: 2017-09-05
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
       person("Lasse", "Vilhelmsen", role = "ctb"),
@@ -18,11 +18,11 @@ Suggests:
 Imports:
     stats,
     httr,
-    dplyr,
     grid,
     gridExtra,
     gtable,
-    ggplot2
+    ggplot2,
+    plyr
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE

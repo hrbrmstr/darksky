@@ -13,7 +13,7 @@ print.darksky <- function(x, ...) {
 
     cat(has, "\n")
     cat(padz(" ", cons_wd, "="), "\n")
-    dplyr::glimpse(x[[has]])
+    print(str(x[[has]]))
     cat("\n")
 
   }

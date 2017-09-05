@@ -70,23 +70,31 @@ get_forecast_for <- function(latitude, longitude, timestamp,
   # hourly, minutely and daily blocks might not be in the response
   # so only process the ones that are actually in the response
 
-  lapply(lys[which(lys %in% names(tmp))], function(x) {
+  lapply(
 
-    dat <- dplyr::bind_rows(lapply(tmp[[x]]$data, as_data_frame))
+    lys[which(lys %in% names(tmp))], function(x) {
 
-    # various time fields might not be in the block data, so only
-    # process which ones are in the block data
+      dat <- plyr::rbind.fill(lapply(tmp[[x]]$data, as.data.frame, stringsAsFactors=FALSE))
 
-    ftimes <- c("time", "sunriseTime", "sunsetTime", "temperatureMinTime",
-                "temperatureMaxTime", "apparentTemperatureMinTime",
-                "apparentTemperatureMaxTime", "precipIntensityMaxTime")
+      # various time fields might not be in the block data, so only
+      # process which ones are in the block data
 
-    # convert times to POSIXct since they make sense in tbl_dfs/data.frames
+      ftimes <- c("time", "sunriseTime", "sunsetTime", "temperatureMinTime",
+                  "temperatureMaxTime", "apparentTemperatureMinTime",
+                  "apparentTemperatureMaxTime", "precipIntensityMaxTime")
 
-    ly <- dplyr::mutate_at(dat, .funs= funs(convert_time),
-                              .vars=ftimes[which(ftimes %in% colnames(dat))])
+      # convert times to POSIXct since they make sense in tbl_dfs/data.frames
 
-  }) -> fio_data
+      cols <- ftimes[which(ftimes %in% colnames(dat))]
+      for (col in cols) {
+        dat[,col] <- convert_time(dat[,col])
+      }
+
+      dat
+
+    }
+
+  ) -> fio_data
 
   fio_data <- setNames(fio_data, lys[which(lys %in% names(tmp))])
 
@@ -94,10 +102,10 @@ get_forecast_for <- function(latitude, longitude, timestamp,
   # rbinding later for folks
 
   if ("currently" %in% names(tmp)) {
-    currently <- dplyr::as_data_frame(tmp$currently)
+    currently <- as.data.frame(tmp$currently, stringsAsFactors=FALSE)
     if ("time" %in% colnames(currently)) {
-      currently <- dplyr::mutate(currently, time=convert_time(time))
-    }
+      currently$time <- convert_time(currently$time)
+  }
     fio_data$currently <- currently
   }
 
@@ -113,6 +121,7 @@ get_forecast_for <- function(latitude, longitude, timestamp,
   }
 
   class(ret_val) <- c("darksky", class(ret_val))
+
   return(ret_val)
 
 }
