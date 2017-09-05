@@ -111,7 +111,7 @@ get_forecast_for <- function(latitude, longitude, timestamp,
     currently <- as.data.frame(tmp$currently, stringsAsFactors=FALSE)
     if ("time" %in% colnames(currently)) {
       currently$time <- convert_time(currently$time)
-  }
+    }
     fio_data$currently <- currently
   }
 
