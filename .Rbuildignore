@@ -9,3 +9,5 @@ README_files
 ^revdep$
 ^codecov\.yml$
 ^appveyor\.yml$
+README.Rmd
+README.md

@@ -16,6 +16,11 @@ None
 
 ##
 
+2x the autobuild complained abt missing pngs that were there
+when the CRAN checks were performed on other systems.
+
+I've removed the README + associated files to avoid this.
+
 Removed the dplyr dependency and made date parameters more 
 flexible. Tests and examples do not run on CRAN because they
 require an API key. Tests run on Travis and Appveyor.
