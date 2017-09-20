@@ -1,10 +1,4 @@
 
-[![Coverage Status](https://img.shields.io/codecov/c/github/hrbrmstr/darksky/master.svg)](https://codecov.io/github/hrbrmstr/darksky?branch=master)
-[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg?branch=master)](https://travis-ci.org/hrbrmstr/darksky)
-[![Build status](https://ci.appveyor.com/api/projects/status/gq0uxmae9ii64g6q?svg=true)](https://ci.appveyor.com/project/hrbrmstr/darksky)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky)
-![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
-
 `darksky` : Tools to Work with the Dark Sky API
 
 -   Dark Sky API Docs: <https://darksky.net/dev/docs>
@@ -50,12 +44,10 @@ print(now)
 
     ## minutely 
     ## ======================================================================================================================== 
-    ## 'data.frame':    61 obs. of  5 variables:
-    ##  $ time                : POSIXct, format: "2017-09-20 07:07:00" "2017-09-20 07:08:00" "2017-09-20 07:09:00" "2017-09-20 07:10:00" ...
-    ##  $ precipIntensity     : num  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ precipProbability   : num  0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ precipIntensityError: num  NA NA NA NA NA NA NA NA NA NA ...
-    ##  $ precipType          : chr  NA NA NA NA ...
+    ## 'data.frame':    61 obs. of  3 variables:
+    ##  $ time             : POSIXct, format: "2017-09-20 07:29:00" "2017-09-20 07:30:00" "2017-09-20 07:31:00" "2017-09-20 07:32:00" ...
+    ##  $ precipIntensity  : int  0 0 0 0 0 0 0 0 0 0 ...
+    ##  $ precipProbability: int  0 0 0 0 0 0 0 0 0 0 ...
     ## NULL
     ## 
     ## hourly 
@@ -64,9 +56,9 @@ print(now)
     ##  $ time               : POSIXct, format: "2017-09-20 07:00:00" "2017-09-20 08:00:00" "2017-09-20 09:00:00" "2017-09-20 10:00:00" ...
     ##  $ summary            : chr  "Overcast" "Overcast" "Overcast" "Overcast" ...
     ##  $ icon               : chr  "cloudy" "cloudy" "cloudy" "cloudy" ...
-    ##  $ precipIntensity    : num  0.0002 0.0028 0.0034 0.0045 0.0046 0.0064 0.0064 0.0073 0.0061 0.0019 ...
-    ##  $ precipProbability  : num  0.04 0.07 0.1 0.11 0.11 0.13 0.12 0.12 0.11 0.06 ...
-    ##  $ precipType         : chr  "rain" "rain" "rain" "rain" ...
+    ##  $ precipIntensity    : num  0.0003 0 0.0034 0.0045 0.0046 0.0064 0.0064 0.0073 0.0061 0.0019 ...
+    ##  $ precipProbability  : num  0.04 0 0.1 0.11 0.11 0.13 0.12 0.12 0.11 0.06 ...
+    ##  $ precipType         : chr  "rain" NA "rain" "rain" ...
     ##  $ temperature        : num  66.4 66.5 67.1 68.1 68.2 ...
     ##  $ apparentTemperature: num  67.2 67.3 68 68.9 69 ...
     ##  $ dewPoint           : num  64.9 65.1 65.3 65.4 65.5 ...
@@ -90,7 +82,7 @@ print(now)
     ##  $ sunriseTime                : POSIXct, format: "2017-09-20 06:29:59" "2017-09-21 06:31:05" "2017-09-22 06:32:11" "2017-09-23 06:33:17" ...
     ##  $ sunsetTime                 : POSIXct, format: "2017-09-20 18:46:17" "2017-09-21 18:44:28" "2017-09-22 18:42:38" "2017-09-23 18:40:48" ...
     ##  $ moonPhase                  : num  0.02 0.05 0.09 0.12 0.15 0.18 0.21 0.24
-    ##  $ precipIntensity            : num  0.004 0.0001 0.0002 0.0001 0 0.0002 0.0019 0.0043
+    ##  $ precipIntensity            : num  0.0039 0.0001 0.0002 0.0001 0 0.0002 0.0019 0.0043
     ##  $ precipIntensityMax         : num  0.0156 0.0002 0.0003 0.0002 0.0002 0.0007 0.0038 0.0132
     ##  $ precipIntensityMaxTime     : POSIXct, format: "2017-09-20 04:00:00" "2017-09-21 02:00:00" "2017-09-22 04:00:00" "2017-09-23 17:00:00" ...
     ##  $ precipProbability          : num  0.62 0.11 0.09 0.07 0 0.13 0.29 0.41
@@ -128,24 +120,24 @@ print(now)
     ## currently 
     ## ======================================================================================================================== 
     ## 'data.frame':    1 obs. of  19 variables:
-    ##  $ time                : POSIXct, format: "2017-09-20 07:07:18"
+    ##  $ time                : POSIXct, format: "2017-09-20 07:29:58"
     ##  $ summary             : chr "Overcast"
     ##  $ icon                : chr "cloudy"
-    ##  $ nearestStormDistance: int 7
-    ##  $ nearestStormBearing : int 129
+    ##  $ nearestStormDistance: int 8
+    ##  $ nearestStormBearing : int 100
     ##  $ precipIntensity     : int 0
     ##  $ precipProbability   : int 0
-    ##  $ temperature         : num 66.4
-    ##  $ apparentTemperature : num 67.2
-    ##  $ dewPoint            : num 64.9
+    ##  $ temperature         : num 66.5
+    ##  $ apparentTemperature : num 67.3
+    ##  $ dewPoint            : int 65
     ##  $ humidity            : num 0.95
-    ##  $ pressure            : num 1015
-    ##  $ windSpeed           : num 7.63
-    ##  $ windGust            : num 17.6
-    ##  $ windBearing         : int 31
+    ##  $ pressure            : num 1014
+    ##  $ windSpeed           : num 8.2
+    ##  $ windGust            : num 19
+    ##  $ windBearing         : int 32
     ##  $ cloudCover          : int 1
     ##  $ uvIndex             : int 0
-    ##  $ visibility          : num 7.88
+    ##  $ visibility          : num 7.92
     ##  $ ozone               : num 266
     ## NULL
 
@@ -420,7 +412,7 @@ bigger_list$Maine
 print(sprintf("You have used %s API calls.", then$`x-forecast-api-calls`))
 ```
 
-    ## [1] "You have used 251 API calls."
+    ## [1] "You have used 278 API calls."
 
 ``` r
 plot(now)
@@ -446,7 +438,7 @@ library(testthat)
 date()
 ```
 
-    ## [1] "Wed Sep 20 07:07:24 2017"
+    ## [1] "Wed Sep 20 07:30:05 2017"
 
 ``` r
 test_dir("tests/")
