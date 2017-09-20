@@ -6,3 +6,6 @@
 \.bowerrc
 README_files
 ^cran-comments\.md$
+^revdep$
+^codecov\.yml$
+^appveyor\.yml$

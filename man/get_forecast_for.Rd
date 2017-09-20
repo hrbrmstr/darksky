@@ -65,8 +65,7 @@ default.
 
 See the Options section of the official
 \href{https://darksky.net/dev/docs}{Dark Sky API documentation} for more
-information
-.
+information.
 }
 \examples{
 \dontrun{

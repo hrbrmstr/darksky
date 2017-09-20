@@ -4,7 +4,9 @@ editor_options:
   chunk_output_type: console
 ---
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active) 
-[![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky) ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
+<!-- [![Coverage Status](https://img.shields.io/codecov/c/github/hrbrmstr/darksky/master.svg)](https://codecov.io/github/hrbrmstr/darksky?branch=master) -->
+<!-- [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hrbrmstr/darksky?branch=master&svg=true)](https://ci.appveyor.com/project/hrbrmstr/darksky) -->
+<!-- [![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg)](https://travis-ci.org/hrbrmstr/darksky) [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/darksky)](https://cran.r-project.org/package=darksky) -->  ![downloads](http://cranlogs.r-pkg.org/badges/grand-total/darksky)
 
 `darksky` : Tools to Work with the Dark Sky API
 

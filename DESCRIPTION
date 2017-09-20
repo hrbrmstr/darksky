@@ -2,7 +2,7 @@ Package: darksky
 Type: Package
 Title: Tools to Work with the 'Dark Sky' 'API'
 Version: 1.3.0
-Date: 2017-09-05
+Date: 2017-09-20
 Authors@R: c(
       person("Bob", "Rudis", email = "bob@rud.is", role = c("aut", "cre")),
       person("Lasse", "Vilhelmsen", role = "ctb"),
@@ -14,7 +14,8 @@ Description: Provides programmatic access to the 'Dark Sky' 'API'
     weather conditions.
 URL: https://github.com/hrbrmstr/darksky
 Suggests:
-    testthat
+    testthat,
+    covr
 Imports:
     stats,
     httr,

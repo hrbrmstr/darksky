@@ -1,6 +1,7 @@
 # darksky 1.3.0
 
-* Remove dplyr dependency (replacing it with a plyr dep)
+* Remove dplyr dependency (replacing it with a plyr dep but that was implicitly there
+  by the ggplot2 dependency)
 
 # darkksy 1.2.0
 
