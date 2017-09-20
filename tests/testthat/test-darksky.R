@@ -1,6 +1,8 @@
 context("basic functionality")
 test_that("the API call works", {
 
+  testthat::skip_on_cran()
+
   current <- get_current_forecast(43.2672, -70.8617)
 
   expect_that(current, is_a("darksky"))

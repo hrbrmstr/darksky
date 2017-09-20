@@ -12,5 +12,6 @@
 #' @importFrom gridExtra grid.arrange
 #' @import ggplot2
 #' @importFrom stats setNames time
+#' @importFrom utils str
 #' @import gtable
 NULL

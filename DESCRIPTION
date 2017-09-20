@@ -22,7 +22,8 @@ Imports:
     gridExtra,
     gtable,
     ggplot2,
-    plyr
+    plyr,
+    utils
 Depends:
     R (>= 3.2.0)
 License: MIT + file LICENSE
