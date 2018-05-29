@@ -3,6 +3,9 @@ output: rmarkdown::github_document
 editor_options: 
   chunk_output_type: console
 ---
+```{r include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, fig.retina=2)
+```
 <!-- [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)  -->
 <!-- [![Coverage Status](https://img.shields.io/codecov/c/github/hrbrmstr/darksky/master.svg)](https://codecov.io/github/hrbrmstr/darksky?branch=master) -->
 <!-- [![Build Status](https://travis-ci.org/hrbrmstr/darksky.svg?branch=master)](https://travis-ci.org/hrbrmstr/darksky) -->
@@ -43,8 +46,7 @@ options(width=120)
 
 ```{r}
 library(darksky)
-library(ggplot2)
-library(purrr)
+library(tidyverse)
 
 # current verison
 packageVersion("darksky")
