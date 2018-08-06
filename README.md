@@ -43,7 +43,7 @@ devtools::install.packages("darksky")
 library(darksky)
 library(tidyverse)
 
-# current verison
+# current version
 packageVersion("darksky")
 ```
 
