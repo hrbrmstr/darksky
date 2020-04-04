@@ -1,3 +1,4 @@
+! NOTICE APPLE IS SHUTTING DOWN THE API 2021-12-31
 
 <!-- [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)  -->
 
