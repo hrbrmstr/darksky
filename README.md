@@ -1,6 +1,6 @@
 # NOTICE APPLE IS SHUTTING DOWN THE API 2021-12-31
 
-<!-- [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/0.1.0/active.svg)](http://www.repostatus.org/#active)  -->
+Alt wx API I'm considering wrapping as an alternative — <https://www.visualcrossing.com/resources/documentation/weather-api/how-to-replace-the-dark-sky-api/>
 
 <!-- [![Coverage Status](https://img.shields.io/codecov/c/github/hrbrmstr/darksky/master.svg)](https://codecov.io/github/hrbrmstr/darksky?branch=master) -->
 
